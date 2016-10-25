@@ -9,6 +9,7 @@ var b = {
 };
 
 // Mapping of step names to colors.
+// NOTA SILVIA: En mis datos hay 825 variables y no seis como en el ejemplo ¿supongo que esto puede ser un problema?
 var colors = {
   "home": "#5687d1",
   "product": "#7b615c",
