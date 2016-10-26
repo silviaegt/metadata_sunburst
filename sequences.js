@@ -9,7 +9,22 @@ var b = {
 };
 
 // Mapping of step names to colors.
-// NOTA SILVIA: En mis datos hay 825 variables y no seis como en el ejemplo ¿supongo que esto puede ser un problema?
+
+
+/*
+ SILVIA'S NOTE: In my data there are 825 variables & not 6 like in Rodden's 
+I'm guessing this is part of the problem?
+NOTA SILVIA: En mis datos hay 825 variables y no seis como en el ejemplo 
+¿supongo que esto puede ser un problema?
+*/
+
+/*
+I TRIED THESE:
+var color = d3.scaleOrdinal(d3.schemeCategory20); <-- d3 v4 
+var colors = d3.scale.category20(); <--d3 v3
+*/
+var colors = d3.scale.category20();
+/*
 var colors = {
   "home": "#5687d1",
   "product": "#7b615c",
@@ -18,6 +33,7 @@ var colors = {
   "other": "#a173d1",
   "end": "#bbbbbb"
 };
+*/
 
 // Total size of all segments; we set this later, after loading the data.
 var totalSize = 0; 
@@ -41,7 +57,9 @@ var arc = d3.svg.arc()
 
 // Use d3.text and d3.csv.parseRows so that we do not need to have a header
 // row, and can receive the csv as an array of arrays.
-d3.text("visit-sequences2.csv", function(text) {
+
+
+d3.text("metadata-sequence.csv", function(text) {
   var csv = d3.csv.parseRows(text);
   var json = buildHierarchy(csv);
   createVisualization(json);
@@ -73,7 +91,7 @@ function createVisualization(json) {
       .attr("display", function(d) { return d.depth ? null : "none"; })
       .attr("d", arc)
       .attr("fill-rule", "evenodd")
-      .style("fill", function(d) { return colors[d.name]; })
+      .style("fill", function(d) { return colors(d.name); }) // need to call this as a function, not as an object key in the original example
       .style("opacity", 1)
       .on("mouseover", mouseover);
 
@@ -188,7 +206,7 @@ function updateBreadcrumbs(nodeArray, percentageString) {
 
   entering.append("svg:polygon")
       .attr("points", breadcrumbPoints)
-      .style("fill", function(d) { return colors[d.name]; });
+      .style("fill", function(d) { return colors(d.name); });
 
   entering.append("svg:text")
       .attr("x", (b.w + b.t) / 2)
