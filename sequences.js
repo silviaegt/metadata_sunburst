@@ -1,3 +1,7 @@
+/*
+This code owes a lot to the lovely twitter community: @davekelly, @kerryrodden, @johnrladd -> Thank you :)
+*/
+
 // Dimensions of sunburst.
 var width = 750;
 var height = 600;
