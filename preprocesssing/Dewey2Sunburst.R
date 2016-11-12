@@ -35,5 +35,5 @@ for (i in 1:nrow(test_data))
 
 test_data = test_data[,-1]
 
-write.table(test_data,"metadata-sequence.csv",sep=",",row.names=FALSE,col.names=FALSE)
-
+write.table(test_data,"metadata-sequence.csv",sep=",",row.names=FALSE,col.names=FALSE,
+            quote=FALSE)
